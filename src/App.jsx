@@ -38,15 +38,15 @@ const App = () => {
     <div className={styles.container}>
       <div className={styles.dashboard}>Dashboard</div>
       <div className={styles.listOrder}>List Order</div>
-      <Table>
+      <Table className={styles.table}>
         <thead>
-          <tr>
-            <th>ID</th>
-            <th>User Email</th>
-            <th>Car</th>
-            <th>Start Rent</th>
-            <th>Finish Rent</th>
-            <th>Price</th>
+          <tr style={{ borderRadius: 2 }}>
+            <th className={styles.tableHead}>ID</th>
+            <th className={styles.tableHead}>User Email</th>
+            <th className={styles.tableHead}>Car</th>
+            <th className={styles.tableHead}>Start Rent</th>
+            <th className={styles.tableHead}>Finish Rent</th>
+            <th className={styles.tableHead}>Price</th>
           </tr>
         </thead>
         <tbody>
@@ -67,75 +67,84 @@ const App = () => {
           ))}
         </tbody>
       </Table>
-      <div>Limit</div>
+      <div className={styles.footer}>
+        <div className={styles.footerLeft}>
+          <div className={styles.pageOption}>
+            <div className={styles.pageOptionText}>Limit</div>
+            <Form.Select
+              onChange={(e) => setLimit(e.target.value)}
+              value={limit}
+              aria-label="Default select example"
+            >
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+            </Form.Select>
+          </div>
 
-      <Form.Select
-        onChange={(e) => setLimit(e.target.value)}
-        value={limit}
-        aria-label="Default select example"
-      >
-        <option value={10}>10</option>
-        <option value={20}>20</option>
-        <option value={50}>50</option>
-      </Form.Select>
+          <div className={styles.pageJumper}>
+            <div className={styles.pageOption}>
+              <div className={styles.pageOptionText}>Jump to page</div>
+              <Form.Select
+                onChange={(e) => setTempPage(e.target.value)}
+                value={tempPage}
+                aria-label="Default select example"
+              >
+                {Array(orders.pageCount)
+                  .fill()
+                  .map((_, i) => (
+                    <option key={i} value={i + 1}>
+                      {i + 1}
+                    </option>
+                  ))}
+              </Form.Select>
+            </div>
 
-      <div>Jump to page</div>
-
-      <Form.Select
-        onChange={(e) => setTempPage(e.target.value)}
-        value={tempPage}
-        aria-label="Default select example"
-      >
-        {Array(orders.pageCount)
-          .fill()
-          .map((_, i) => (
-            <option key={i} value={i + 1}>
-              {i + 1}
-            </option>
-          ))}
-      </Form.Select>
-      <Button onClick={() => setPage(tempPage)}>Go</Button>
-      <Pagination>
-        <Pagination.First
-          onClick={() => {
-            setPage(1);
-          }}
-        />
-        <Pagination.Item
-          onClick={() => {
-            setPage(1);
-          }}
-        >
-          1
-        </Pagination.Item>
-        <Pagination.Item
-          onClick={() => {
-            setPage(2);
-          }}
-        >
-          2
-        </Pagination.Item>
-        <Pagination.Item
-          onClick={() => {
-            setPage(3);
-          }}
-        >
-          3
-        </Pagination.Item>
-        <Pagination.Ellipsis />
-        <Pagination.Item
-          onClick={() => {
-            setPage(orders.pageCount);
-          }}
-        >
-          {orders.pageCount}
-        </Pagination.Item>
-        <Pagination.Last
-          onClick={() => {
-            setPage(orders.pageCount);
-          }}
-        />
-      </Pagination>
+            <Button onClick={() => setPage(tempPage)}>Go</Button>
+          </div>
+        </div>
+        <Pagination>
+          <Pagination.First
+            onClick={() => {
+              setPage(1);
+            }}
+          />
+          <Pagination.Item
+            onClick={() => {
+              setPage(1);
+            }}
+          >
+            1
+          </Pagination.Item>
+          <Pagination.Item
+            onClick={() => {
+              setPage(2);
+            }}
+          >
+            2
+          </Pagination.Item>
+          <Pagination.Item
+            onClick={() => {
+              setPage(3);
+            }}
+          >
+            3
+          </Pagination.Item>
+          <Pagination.Ellipsis />
+          <Pagination.Item
+            onClick={() => {
+              setPage(orders.pageCount);
+            }}
+          >
+            {orders.pageCount}
+          </Pagination.Item>
+          <Pagination.Last
+            onClick={() => {
+              setPage(orders.pageCount);
+            }}
+          />
+        </Pagination>
+      </div>
     </div>
   );
 };
