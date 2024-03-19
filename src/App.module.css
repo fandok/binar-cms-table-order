@@ -1,0 +1,19 @@
+.container {
+  margin: 84px;
+}
+
+.dashboard {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  margin-bottom: 24px;
+}
+
+.listOrder {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-bottom: 20px;
+  border-left: 4px solid #0d28a6;
+  padding-left: 8px;
+}

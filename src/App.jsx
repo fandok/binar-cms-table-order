@@ -3,6 +3,8 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { Button, Form, Pagination, Table } from "react-bootstrap";
 
+import styles from "./App.module.css";
+
 const App = () => {
   const [tempPage, setTempPage] = useState(1);
   const [page, setPage] = useState(1);
@@ -33,9 +35,9 @@ const App = () => {
   }, [limit, page]);
 
   return (
-    <div>
-      <div>Dashboard</div>
-      <div>List Order</div>
+    <div className={styles.container}>
+      <div className={styles.dashboard}>Dashboard</div>
+      <div className={styles.listOrder}>List Order</div>
       <Table>
         <thead>
           <tr>
